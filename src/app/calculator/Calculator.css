@@ -1,0 +1,327 @@
+/* Base Styles inherited */
+
+.calc-dashboard {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.card-panel {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color-1);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    background: var(--section-bg-1);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    color: var(--paragraph-color);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.tabs button.active {
+    background: var(--white);
+    color: var(--secondary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs */
+.input-group-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--heading-color);
+    font-size: 14px;
+}
+
+.range-input {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.range-input input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
+.range-input input[type="number"],
+.simple-input {
+    width: 120px;
+    padding: 8px;
+    border: 1px solid var(--border-color-1);
+    border-radius: 6px;
+    text-align: right;
+    font-weight: 700;
+}
+
+.bank-chips {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.bank-chips span {
+    padding: 6px 12px;
+    background: var(--section-bg-1);
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.bank-chips span.active {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* Advanced Section */
+.advanced-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.advanced-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.val-display {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Results Panel */
+.main-result {
+    position: relative;
+    /* height: 250px;  Removed fixed height to prevent overlap */
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    /* Stack EMI and Chart vertically */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.emi-display-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.emi-display-box p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.emi-display-box h2 {
+    font-size: 32px;
+    color: var(--secondary-color);
+    margin: 5px 0 0 0;
+    font-weight: 800;
+}
+
+/* Chart Wrapper to handle single/dual */
+.chart-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.chart-wrapper.dual-view {
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* responsive */
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-item h5 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.chart-container {
+    position: relative;
+    width: 200px;
+    /* Slightly smaller for side by side */
+    height: 200px;
+}
+
+.new-stats-box {
+    margin-top: 15px;
+    text-align: center;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #c8e6c9;
+}
+
+.new-stats-box p {
+    font-size: 12px;
+    margin: 3px 0;
+    color: #2e7d32;
+}
+
+.new-stats-box strong {
+    font-size: 14px;
+    display: block;
+}
+
+.new-stats-box.standard-stats {
+    background: #fff0f0;
+    border-color: #ffcccc;
+}
+
+.new-stats-box.standard-stats p {
+    color: #c0392b;
+}
+
+.center-text {
+    display: none;
+    /* Hide old centered text if present */
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.insight-item {
+    background: var(--section-bg-1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.insight-item span {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.insight-item strong {
+    font-size: 16px;
+    color: var(--heading-color);
+}
+
+/* Insight Badges */
+.insight-badge {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.insight-badge i {
+    font-size: 24px;
+}
+
+.insight-badge.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.insight-badge.warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.insight-badge h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.insight-badge p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.real-cost-box {
+    border-top: 1px solid var(--border-color-1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.real-cost-box .info-tooltip {
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 14px;
+    position: relative;
+}
+
+.real-cost-box .info-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    z-index: 10;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.real-cost-box h4 {
+    font-size: 20px;
+    color: #555;
+    margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+    .calc-dashboard {
+        grid-template-columns: 1fr;
+    }
+}

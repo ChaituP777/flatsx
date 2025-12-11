@@ -1,0 +1,87 @@
+# implementation_plan.md - Budget & Affordability Calculator
+
+## Goal
+Create a "True Ownership Budget Calculator" that goes beyond simple bank eligibility to show the **actual financial requirement** of buying a home.
+
+## 1. Competitor Analysis (The Gap)
+| Platform | Feature | Missing |
+| :--- | :--- | :--- |
+| **HDFC / SBI** | Shows max loan likely to be approved. | Doesn't account for lifestyle or hidden closing costs. |
+| **MagicBricks** | Good eligibility check. | Ignores Stamp Duty, Registration, & Brokerage in the "Budget". |
+| **Housing.com** | Basic affordability slider. | No breakdown of "Cash in Hand" needed. |
+
+## 2. Proposed Features (The "FlatSX" Edge)
+
+### A. Core: Eligibility Engine (Standard)
+*   **Input:** Monthly Income, Existing EMIs, Interest Rate, Tenure.
+*   **Logic:** Uses standard FOIR (Fixed Obligation to Income Ratio) of 50%.
+*   **Output:** "You are eligible for a Loan of ₹X".
+
+### B. Unique Feature 1: "Hidden Cost Detector" 🕵️‍♂️
+*   **Problem:** Users think "20% Downpayment is all I need".
+*   **Solution:** We calculate the **Real Upfront Cash** needed.
+*   **Breakdown:**
+    *   Downpayment (20%)
+    *   Stamp Duty (~6% of value)
+    *   Registration (~1%)
+    *   Brokerage (~1%)
+    *   Misc (Legal/Processing) (~0.5%)
+*   **Result:** *You thought you needed ₹10 Lakhs? You actually need ₹14.5 Lakhs.*
+
+### C. Unique Feature 2: "Safety Meter" 🛡️
+*   **Problem:** Banks define eligibility on *Gross* income, ignoring tax/lifestyle.
+*   **Solution:** A slider for "Aggressive" (Bank logic) vs "Conservative" (Safe logic).
+*   **Conservative Logic:** Uses 30% rule for EMI limit instead of 50%.
+
+## 3. Implementation Details
+
+### File Structure
+- [src/app/calculator/budget/page.js](file:///c:/Users/PC/Desktop/flatsx/src/app/calculator/budget/page.js) (New Route)
+- [src/app/calculator/budget/BudgetCalculator.css](file:///c:/Users/PC/Desktop/flatsx/src/app/calculator/budget/BudgetCalculator.css) (New Styles)
+
+### Component Layout
+1.  **Input Section (Left):**
+    - Monthly Salary
+    - Current EMIs
+    - Current Savings (Cash in hand)
+2.  **Result Section (Right):**
+    - **Big Number:** "Maximum Property Price You Can Afford"
+    - **Cash Check:** "Do you have enough Savings?" (Red/Green verdict)
+    - **Hidden Cost Table:** Detailed breakdown of the extra fees.
+
+## 4. User Flow
+1.  User enters Salary: ₹1 Lakh.
+2.  User enters Savings: ₹10 Lakhs.
+3.  **Calculator says:** "You can afford a ₹60 Lakh home (Loan eligibility)."
+4.  **BUT warns:** "⚠️ Shortfall Alert! For a ₹60L home, you need ₹15L upfront (incl. taxes). You only have ₹10L."
+5.  **Advice:** "Look for homes in the ₹40L range instead."
+
+## 6. Technical Logic & Formulas 🧮
+
+### A. Max Monthly Capacity (FOIR Method)
+We calculate how much money is available for EMI.
+$$Capacity = (Income \times FOIR_{limit}) - ExistingEMI$$
+*   **FOIR Limit:** Controlled by Safety Meter.
+    *   Safe: 30%
+    *   Moderate: 50% (Standard)
+    *   Aggressive: 60%
+
+### B. Max Loan Eligibility (Reverse EMI)
+We calculate the Principal ($P$) for a given EMI ($E$).
+$$P = E \times \frac{(1+r)^n - 1}{r(1+r)^n}$$
+*   $r$ = Monthly Interest Rate
+*   $n$ = Tenure in Months
+
+### C. True Cash Requirement (Hidden Cost Engine)
+We calculate the *Real Upfront Cash* needed beyond downpayment.
+$$Cash_{total} = Downpayment + Taxes + Fees$$
+*   **Downpayment:** 20% of Property Value
+*   **Stamp Duty:** 6%
+*   **Registration:** 1%
+*   **Brokerage:** 1%
+*   **Misc Fees:** 0.5% (Legal/Processing)
+
+### D. Cash Safety Check
+$$Deficit = Cash_{total} - UserSavings$$
+*   If $Deficit > 0$: **RED ALERT** (Insufficient Cash).
+*   If $Deficit \le 0$: **GREEN SIGNAL** (Cash Ready).

@@ -1,0 +1,100 @@
+.legal-services-page {
+    min-height: 100vh;
+}
+
+.legal-hero {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.legal-hero h1 {
+    color: var(--white);
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.legal-hero p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.services-grid-legal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: -50px auto 80px;
+    max-width: 1200px;
+}
+
+.service-package {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-package:hover {
+    transform: translateY(-10px);
+}
+
+.service-package h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--heading-color);
+}
+
+.package-price {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.package-features li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color-1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.package-features li i {
+    color: var(--green);
+    font-size: 18px;
+}
+
+.consultation-section {
+    text-align: center;
+    padding: 60px 40px;
+    background: var(--section-bg-1);
+    border-radius: 8px;
+    margin-bottom: 80px;
+}
+
+.consultation-section h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.consultation-section p {
+    font-size: 18px;
+    color: var(--paragraph-color);
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .services-grid-legal {
+        grid-template-columns: 1fr;
+    }
+}

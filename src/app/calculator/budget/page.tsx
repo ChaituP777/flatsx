@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import './BudgetCalculator.css';
+
 
 const BudgetCalculator = () => {
     // Inputs
@@ -100,60 +100,60 @@ const BudgetCalculator = () => {
     };
 
     return (
-        <div className="budget-calculator-container">
-            <h1 className="calc-title">💰 True Affordability Calculator</h1>
-            <p className="subtitle">Don't just calculate EMI. Calculate the <strong>Full Cash Requirement</strong>.</p>
+        <div className="max-w-[1000px] mx-auto my-[40px] p-[20px] bg-white rounded-[12px] shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+            <h1 className="text-center text-[#2c3e50] mb-[5px] text-[32px] font-bold">💰 True Affordability Calculator</h1>
+            <p className="text-center text-[#7f8c8d] mb-[40px]">Don't just calculate EMI. Calculate the <strong>Full Cash Requirement</strong>.</p>
 
-            <div className="calculator-layout">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
                 {/* Left: Inputs */}
-                <div className="input-panel">
+                <div className="p-[20px] bg-[#f8f9fa] rounded-[12px]">
 
-                    <div className="input-group">
-                        <label>Monthly Net Income (In Hand)</label>
-                        <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))} />
-                        <div className="range-slider">
-                            <input type="range" min="20000" max="1000000" step="5000" value={income} onChange={(e) => setIncome(Number(e.target.value))} />
+                    <div className="mb-[25px]">
+                        <label className="block font-semibold text-[#34495e] mb-[8px]">Monthly Net Income (In Hand)</label>
+                        <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))} className="w-full p-[12px] border border-[#ddd] rounded-[8px] text-[16px] font-bold text-[#2c3e50]" />
+                        <div className="mt-[10px]">
+                            <input type="range" min="20000" max="1000000" step="5000" value={income} onChange={(e) => setIncome(Number(e.target.value))} className="w-full accent-primary" />
                         </div>
                     </div>
 
-                    <div className="input-group">
-                        <label>Existing Monthly EMIs</label>
-                        <input type="number" value={existingEmi} onChange={(e) => setExistingEmi(Number(e.target.value))} />
-                        <div className="range-slider">
-                            <input type="range" min="0" max="200000" step="2000" value={existingEmi} onChange={(e) => setExistingEmi(Number(e.target.value))} />
+                    <div className="mb-[25px]">
+                        <label className="block font-semibold text-[#34495e] mb-[8px]">Existing Monthly EMIs</label>
+                        <input type="number" value={existingEmi} onChange={(e) => setExistingEmi(Number(e.target.value))} className="w-full p-[12px] border border-[#ddd] rounded-[8px] text-[16px] font-bold text-[#2c3e50]" />
+                        <div className="mt-[10px]">
+                            <input type="range" min="0" max="200000" step="2000" value={existingEmi} onChange={(e) => setExistingEmi(Number(e.target.value))} className="w-full accent-primary" />
                         </div>
-                        <small>Car loans, Personal loans, etc.</small>
+                        <small className="block mt-[5px] text-[#666] text-[12px]">Car loans, Personal loans, etc.</small>
                     </div>
 
-                    <div className="input-group">
-                        <label>Current Available Cash (Savings)</label>
-                        <input type="number" value={savings} onChange={(e) => setSavings(Number(e.target.value))} />
-                        <div className="range-slider">
-                            <input type="range" min="0" max="5000000" step="50000" value={savings} onChange={(e) => setSavings(Number(e.target.value))} />
+                    <div className="mb-[25px]">
+                        <label className="block font-semibold text-[#34495e] mb-[8px]">Current Available Cash (Savings)</label>
+                        <input type="number" value={savings} onChange={(e) => setSavings(Number(e.target.value))} className="w-full p-[12px] border border-[#ddd] rounded-[8px] text-[16px] font-bold text-[#2c3e50]" />
+                        <div className="mt-[10px]">
+                            <input type="range" min="0" max="5000000" step="50000" value={savings} onChange={(e) => setSavings(Number(e.target.value))} className="w-full accent-primary" />
                         </div>
-                        <small>Cash available for Downpayment & Registration</small>
+                        <small className="block mt-[5px] text-[#666] text-[12px]">Cash available for Downpayment & Registration</small>
                     </div>
 
-                    <div className="input-group">
-                        <label>Safety Meter (Risk Appetite)</label>
-                        <div className="safety-toggles">
+                    <div className="mb-[25px]">
+                        <label className="block font-semibold text-[#34495e] mb-[8px]">Safety Meter (Risk Appetite)</label>
+                        <div className="flex gap-[10px] mb-[10px]">
                             <button
-                                className={`safe-btn ${safetyLevel === 'conservative' ? 'active' : ''}`}
+                                className={`flex-1 p-[10px_5px] border border-[#ddd] bg-white rounded-[8px] cursor-pointer text-[13px] font-semibold transition-all duration-200 ${safetyLevel === 'conservative' ? 'scale-105 border-transparent text-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] bg-[#27ae60]' : ''}`}
                                 onClick={() => setSafetyLevel('conservative')}>
                                 🛡️ Safe (30%)
                             </button>
                             <button
-                                className={`mod-btn ${safetyLevel === 'moderate' ? 'active' : ''}`}
+                                className={`flex-1 p-[10px_5px] border border-[#ddd] bg-white rounded-[8px] cursor-pointer text-[13px] font-semibold transition-all duration-200 ${safetyLevel === 'moderate' ? 'scale-105 border-transparent text-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] bg-[#f39c12]' : ''}`}
                                 onClick={() => setSafetyLevel('moderate')}>
                                 ⚖️ Moderate (50%)
                             </button>
                             <button
-                                className={`agg-btn ${safetyLevel === 'aggressive' ? 'active' : ''}`}
+                                className={`flex-1 p-[10px_5px] border border-[#ddd] bg-white rounded-[8px] cursor-pointer text-[13px] font-semibold transition-all duration-200 ${safetyLevel === 'aggressive' ? 'scale-105 border-transparent text-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] bg-[#e74c3c]' : ''}`}
                                 onClick={() => setSafetyLevel('aggressive')}>
                                 🚀 Max (60%)
                             </button>
                         </div>
-                        <p className="safety-hint">
+                        <p className="text-[13px] text-[#555] italic mt-[5px]">
                             {safetyLevel === 'conservative' && "Use only 30% of income for EMI. Recommended for families."}
                             {safetyLevel === 'moderate' && "Standard Bank Norm (50% of income)."}
                             {safetyLevel === 'aggressive' && "Aggressive borrowing. High risk."}
@@ -162,62 +162,62 @@ const BudgetCalculator = () => {
                 </div>
 
                 {/* Right: Results */}
-                <div className="result-panel">
+                <div className="p-[10px]">
                     {result ? (
                         <>
-                            <div className="highlight-card">
-                                <h3>Take-Home Budget</h3>
-                                <h1>{formatMoney(result.maxProperty)}</h1>
-                                <p>Maximum Property Value you can consider</p>
-                                <div className="loan-sub-info">
-                                    <small>Max Bank Loan: <strong>{formatMoney(result.maxLoan)}</strong></small>
+                            <div className="text-center bg-gradient-to-br from-[#4e54c8] to-[#8f94fb] text-white p-[25px] rounded-[12px] mb-[25px] shadow-[0_4px_15px_rgba(78,84,200,0.3)]">
+                                <h3 className="m-0 text-[14px] uppercase tracking-widest opacity-90">Take-Home Budget</h3>
+                                <h1 className="m-[10px_0] text-[36px] font-bold">{formatMoney(result.maxProperty)}</h1>
+                                <p className="m-0 text-[13px] opacity-80">Maximum Property Value you can consider</p>
+                                <div className="mt-[10px] pt-[10px] border-t border-white/20">
+                                    <small className="text-[14px] bg-black/10 p-[4px_10px] rounded-[20px]">Max Bank Loan: <strong>{formatMoney(result.maxLoan)}</strong></small>
                                 </div>
                             </div>
 
                             {/* Hidden Cost Alert */}
-                            <div className={`cash-alert-box ${result.isCashDeficit ? 'deficit' : 'surplus'}`}>
-                                <div className="alert-header">
-                                    <h4>{result.isCashDeficit ? '⚠️ Cash Shortfall Alert' : '✅ You are Cash Ready'}</h4>
+                            <div className={`p-[15px] rounded-[8px] mb-[25px] border-l-[5px] ${result.isCashDeficit ? 'bg-[#fff0f0] border-l-[#e74c3c] text-[#c0392b]' : 'bg-[#e8f5e9] border-l-[#27ae60] text-[#2e7d32]'}`}>
+                                <div className="mb-[5px]">
+                                    <h4 className="m-0 font-bold">{result.isCashDeficit ? '⚠️ Cash Shortfall Alert' : '✅ You are Cash Ready'}</h4>
                                 </div>
-                                <p>
+                                <p className="m-0">
                                     {result.isCashDeficit
                                         ? `You need ${formatMoney(result.cashShortfall)} MORE upfront cash to close this deal.`
                                         : "Great! Your savings cover the Downpayment + All Hidden Costs."}
                                 </p>
                             </div>
 
-                            <div className="hidden-cost-breakdown">
-                                <h4>🕵️‍♂️ The Real Cash Breakdown</h4>
-                                <div className="cost-row downpayment">
+                            <div className="bg-white border border-[#eee] p-[20px] rounded-[12px] relative overflow-hidden">
+                                <h4 className="mt-0 text-[#34495e] border-b border-[#eee] pb-[10px] mb-[15px] font-bold">🕵️‍♂️ The Real Cash Breakdown</h4>
+                                <div className="flex justify-between mb-[8px] text-[14px] text-[#555]">
                                     <span>Base Downpayment (20%)</span>
                                     <span>{formatMoney(result.breakdown.downpayment)}</span>
                                 </div>
-                                <div className="divider"></div>
-                                <div className="cost-row hidden">
+                                <div className="h-[1px] bg-[#eee] my-[10px]"></div>
+                                <div className="flex justify-between mb-[8px] text-[14px] text-[#d35400]">
                                     <span>Stamp Duty (6%)</span>
                                     <span>+ {formatMoney(result.breakdown.stampDuty)}</span>
                                 </div>
-                                <div className="cost-row hidden">
+                                <div className="flex justify-between mb-[8px] text-[14px] text-[#d35400]">
                                     <span>Registration (1%)</span>
                                     <span>+ {formatMoney(result.breakdown.registration)}</span>
                                 </div>
-                                <div className="cost-row hidden">
+                                <div className="flex justify-between mb-[8px] text-[14px] text-[#d35400]">
                                     <span>Brokerage & Legal (1.5%)</span>
                                     <span>+ {formatMoney(result.breakdown.brokerage + result.breakdown.misc)}</span>
                                 </div>
-                                <div className="total-cash-row">
+                                <div className="flex justify-between text-[16px] text-[#2c3e50] mt-[10px] pt-[10px] border-t-2 border-dashed border-[#ddd] font-bold">
                                     <span>Total Cash Needed Day 1</span>
                                     <strong>{formatMoney(result.breakdown.totalCashNeeded)}</strong>
                                 </div>
-                                <div className="user-cash-row">
+                                <div className="flex justify-between text-[#27ae60] font-semibold mt-[5px]">
                                     <span>Your Available Savings</span>
                                     <span>- {formatMoney(savings)}</span>
                                 </div>
                             </div>
                         </>
                     ) : (
-                        <div className="error-state">
-                            <h3>Income too low for a loan</h3>
+                        <div className="text-center p-[40px] text-[#7f8c8d]">
+                            <h3 className="text-[20px]">Income too low for a loan</h3>
                         </div>
                     )}
                 </div>

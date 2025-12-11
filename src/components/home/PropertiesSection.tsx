@@ -1,5 +1,5 @@
 import PropertyCard from '../common/PropertyCard';
-import './PropertiesSection.css';
+
 
 const PropertiesSection = () => {
     const properties = [
@@ -63,21 +63,21 @@ const PropertiesSection = () => {
     ];
 
     return (
-        <section className="properties-section">
-            <div className="container">
-                <div className="section-title">
-                    <span>Properties</span>
-                    <h2>Featured Listings</h2>
+        <section className="py-[80px] bg-white sm:py-[60px]">
+            <div className="container mx-auto px-[15px] max-w-[1200px] xl:max-w-[1320px]">
+                <div className="text-center mb-[50px]">
+                    <span className="inline-block py-[6px] px-[20px] bg-[#ff6b6b1a] text-secondary rounded-[50px] text-[14px] font-semibold mb-[15px]">Properties</span>
+                    <h2 className="text-[42px] text-heading font-bold sm:text-[32px]">Featured Listings</h2>
                 </div>
 
-                <div className="properties-grid">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] mb-[50px]">
                     {properties.map(property => (
                         <PropertyCard key={property.id} property={property} />
                     ))}
                 </div>
 
-                <div className="view-all-btn">
-                    <button className="btn btn-primary">
+                <div className="text-center">
+                    <button className="btn btn-primary py-[15px] px-[40px] text-[16px]">
                         View All Properties <i className="fas fa-arrow-right"></i>
                     </button>
                 </div>

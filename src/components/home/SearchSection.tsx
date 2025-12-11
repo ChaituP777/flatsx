@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import './SearchSection.css';
+
 
 const SearchSection = () => {
     const router = useRouter();
@@ -26,18 +26,18 @@ const SearchSection = () => {
     };
 
     return (
-        <section className="search-section">
-            <div className="container">
-                <div className="search-box">
+        <section className="-mt-[40px] sm:-mt-[80px] relative z-[100] pb-[80px]">
+            <div className="container mx-auto px-[15px] max-w-[1200px] xl:max-w-[1320px]">
+                <div className="bg-white rounded-[8px] shadow-[0_10px_40px_rgba(0,0,0,0.1)] p-[30px_20px] sm:p-[40px]">
                     <form onSubmit={handleSearch}>
-                        <div className="search-grid">
-                            <div className="search-field">
-                                <label>Location</label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-[20px] items-end">
+                            <div className="block">
+                                <label className="block font-semibold text-heading mb-[10px] text-[14px]">Location</label>
                                 <select
                                     name="location"
                                     value={searchData.location}
                                     onChange={handleChange}
-                                    className="form-control"
+                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
                                 >
                                     <option value="">Choose Area</option>
                                     <option value="mumbai">Mumbai</option>
@@ -48,13 +48,13 @@ const SearchSection = () => {
                                 </select>
                             </div>
 
-                            <div className="search-field">
-                                <label>BHK Type</label>
+                            <div className="block">
+                                <label className="block font-semibold text-heading mb-[10px] text-[14px]">BHK Type</label>
                                 <select
                                     name="bhkType"
                                     value={searchData.bhkType}
                                     onChange={handleChange}
-                                    className="form-control"
+                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
                                 >
                                     <option value="">Select BHK</option>
                                     <option value="1bhk">1 BHK</option>
@@ -65,13 +65,13 @@ const SearchSection = () => {
                                 </select>
                             </div>
 
-                            <div className="search-field">
-                                <label>Property Status</label>
+                            <div className="block">
+                                <label className="block font-semibold text-heading mb-[10px] text-[14px]">Property Status</label>
                                 <select
                                     name="propertyType"
                                     value={searchData.propertyType}
                                     onChange={handleChange}
-                                    className="form-control"
+                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
                                 >
                                     <option value="">Select Status</option>
                                     <option value="rent">For Rent</option>
@@ -80,8 +80,8 @@ const SearchSection = () => {
                                 </select>
                             </div>
 
-                            <div className="search-button">
-                                <button type="submit" className="btn btn-primary">
+                            <div className="sm:col-span-2 lg:col-span-1">
+                                <button type="submit" className="btn btn-primary p-[14px_35px] whitespace-nowrap text-[15px] w-full lg:w-auto">
                                     <i className="fas fa-search"></i> Search Now
                                 </button>
                             </div>

@@ -45,7 +45,7 @@ const PostProperty = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Property Data:', formData);
-        router.push('/dashboard');
+        // router.push('/dashboard');
     };
 
     const steps = ['Basic Info', 'Details', 'Location', 'Pricing', 'Amenities'];
@@ -112,7 +112,7 @@ const PostProperty = () => {
                             </div>
                             <div className="mb-[25px]">
                                 <label className="block mb-[8px] font-semibold text-heading text-[14px]">Description *</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} rows="5" required className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary" />
+                                <textarea name="description" value={formData.description} onChange={handleChange} rows={5} required className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary" />
                             </div>
                         </div>
                     )}

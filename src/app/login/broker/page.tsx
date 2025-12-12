@@ -70,7 +70,7 @@ const LoginBroker = () => {
                     <div className="relative min-h-[300px] md:min-h-[500px]">
                         <Image src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600" alt="Login" width={600} height={800} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2ee6] to-[#ff6b6bb3] flex flex-col justify-center items-center p-[40px] text-center">
-                            <h3 className="text-white text-[32px] mb-[15px] font-bold">Professional Dashboard</h3>
+                            <h3 className="text-white text-[32px] mb-[15px] font-bold">Broker Portal</h3>
                             <p className="text-white/90 text-[16px] max-w-[400px]">Manage multiple listings efficiently</p>
                         </div>
                     </div>

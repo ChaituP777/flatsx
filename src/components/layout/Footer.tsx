@@ -22,92 +22,94 @@ const Footer = () => {
             </div>
 
             {/* Footer Main */}
-            <div className="pt-[80px] pb-[40px]">
+            <div className="pt-[100px] pb-[70px] bg-primary">
                 <div className="container mx-auto px-[15px] max-w-[1200px] xl:max-w-[1320px]">
-                    <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1.5fr] gap-[40px] lg:grid-cols-3 md:grid-cols-1 md:gap-[30px]">
-                        {/* About Section */}
-                        <div className="footer-column lg:col-span-3 md:col-span-1">
-                            <div className="mb-[20px]">
-                                <h2 className="text-white text-[24px] font-bold m-0">FlatSX</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[40px] lg:gap-[60px]">
+                        {/* Column 1: Brand & Reach Us */}
+                        <div className="footer-column">
+                            <div className="mb-[30px]">
+                                <h2 className="text-white text-[28px] font-bold m-0">FlatSX</h2>
                             </div>
-                            <p className="text-white/80 text-[14px] leading-[1.8] mb-[20px]">
+                            <p className="text-white/80 text-[15px] leading-[1.8] mb-[30px]">
                                 Your trusted platform for buying, selling, and renting properties without broker fees.
                             </p>
-                            <div className="my-[20px]">
-                                <p className="flex items-center gap-[10px] mb-[10px] text-white/80 text-[14px]"><i className="fas fa-map-marker-alt"></i> Brooklyn, New York, United States</p>
-                                <p className="flex items-center gap-[10px] mb-[10px] text-white/80 text-[14px]"><a href="tel:+0123456789" className="text-white/80 transition-all duration-300 hover:text-secondary hover:pl-[5px]"><i className="fas fa-phone"></i> +0123-456789</a></p>
-                                <p className="flex items-center gap-[10px] mb-[10px] text-white/80 text-[14px]"><a href="mailto:info@flatsx.com" className="text-white/80 transition-all duration-300 hover:text-secondary hover:pl-[5px]"><i className="fas fa-envelope"></i> info@flatsx.com</a></p>
-                            </div>
-                            <div className="flex gap-[10px] mt-[20px]">
-                                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[3px] hover:pl-0">
-                                    <i className="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[3px] hover:pl-0">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[3px] hover:pl-0">
-                                    <i className="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[3px] hover:pl-0">
-                                    <i className="fab fa-instagram"></i>
-                                </a>
+                            <div className="flex flex-col gap-[15px]">
+                                <p className="flex items-start gap-[15px] text-white/80 text-[15px] leading-[1.6]">
+                                    <i className="fas fa-map-marker-alt mt-[5px] text-secondary"></i>
+                                    <span>Brooklyn, New York, United States</span>
+                                </p>
+                                <p className="flex items-center gap-[15px] text-white/80 text-[15px]">
+                                    <i className="fas fa-phone text-secondary"></i>
+                                    <a href="tel:+0123456789" className="transition-all duration-300 hover:text-white hover:pl-[5px]">+0123-456789</a>
+                                </p>
+                                <p className="flex items-center gap-[15px] text-white/80 text-[15px]">
+                                    <i className="fas fa-envelope text-secondary"></i>
+                                    <a href="mailto:info@flatsx.com" className="transition-all duration-300 hover:text-white hover:pl-[5px]">info@flatsx.com</a>
+                                </p>
                             </div>
                         </div>
 
-                        {/* Company Links */}
+                        {/* Column 2: Quick Links */}
                         <div className="footer-column">
-                            <h4 className="text-white text-[18px] mb-[20px] font-bold">Company</h4>
-                            <ul className="list-none p-0 m-0">
-                                <li className="mb-[12px]"><Link href="/about" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">About Us</Link></li>
-                                <li className="mb-[12px]"><Link href="/blog" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Blog</Link></li>
-                                <li className="mb-[12px]"><Link href="/properties" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">All Properties</Link></li>
-                                <li className="mb-[12px]"><Link href="/locations" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Locations</Link></li>
-                                <li className="mb-[12px]"><Link href="/faq" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">FAQ</Link></li>
-                                <li className="mb-[12px]"><Link href="/contact" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Contact Us</Link></li>
+                            <h4 className="text-white text-[20px] mb-[30px] font-bold">Quick Links</h4>
+                            <ul className="list-none p-0 m-0 flex flex-col gap-[15px]">
+                                <li><Link href="/about" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">About Us</Link></li>
+                                <li><Link href="/properties" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Properties</Link></li>
+                                <li><Link href="/blog" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Blog & News</Link></li>
+                                <li><Link href="/contact" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Contact Us</Link></li>
+                                <li><Link href="/faq" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">FAQ</Link></li>
+                                <li><Link href="/calculator/emi" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">EMI Calculator</Link></li>
                             </ul>
                         </div>
 
-                        {/* Services Links */}
+                        {/* Column 3: Services */}
                         <div className="footer-column">
-                            <h4 className="text-white text-[18px] mb-[20px] font-bold">Services</h4>
-                            <ul className="list-none p-0 m-0">
-                                <li className="mb-[12px]"><Link href="/legal-services" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Property Legal Services</Link></li>
-                                <li className="mb-[12px]"><Link href="/home-loan" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Home Loan</Link></li>
-                                <li className="mb-[12px]"><Link href="/interiors" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Home Interiors</Link></li>
-                                <li className="mb-[12px]"><Link href="/builder-projects" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Builder Projects</Link></li>
-                                <li className="mb-[12px]"><Link href="/nri-services" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">NRI Services</Link></li>
-                                <li className="mb-[12px]"><Link href="/sale-agreement" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Sale Agreement</Link></li>
+                            <h4 className="text-white text-[20px] mb-[30px] font-bold">Our Services</h4>
+                            <ul className="list-none p-0 m-0 flex flex-col gap-[15px]">
+                                <li><Link href="/legal-services" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Legal Services</Link></li>
+                                <li><Link href="/home-loan" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Home Loans</Link></li>
+                                <li><Link href="/interiors" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Interiors</Link></li>
+                                <li><Link href="/builder-projects" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Builder Projects</Link></li>
+                                <li><Link href="/nri-services" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">NRI Services</Link></li>
+                                <li><Link href="/sale-agreement" className="text-white/80 text-[15px] transition-all duration-300 hover:text-secondary hover:pl-[10px] inline-block">Sale Agreement</Link></li>
                             </ul>
                         </div>
 
-                        {/* Tools Links */}
+                        {/* Column 4: Newsletter & Social */}
                         <div className="footer-column">
-                            <h4 className="text-white text-[18px] mb-[20px] font-bold">Popular Tools</h4>
-                            <ul className="list-none p-0 m-0">
-                                <li className="mb-[12px]"><Link href="/calculator/budget" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Budget Calculator</Link></li>
-                                <li className="mb-[12px]"><Link href="/calculator/emi" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">EMI Calculator</Link></li>
-                                <li className="mb-[12px]"><Link href="/calculator/eligibility" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Loan Eligibility</Link></li>
-                                <li className="mb-[12px]"><Link href="/calculator/area" className="text-white/80 text-[14px] transition-all duration-300 inline-block hover:text-secondary hover:pl-[5px]">Area Converter</Link></li>
-                            </ul>
-                        </div>
-
-                        {/* Newsletter */}
-                        <div className="footer-column">
-                            <h4 className="text-white text-[18px] mb-[20px] font-bold">Newsletter</h4>
-                            <p className="text-white/80 text-[14px] leading-[1.8] mb-[20px]">Subscribe to our weekly newsletter and receive updates via email.</p>
-                            <form className="flex gap-[10px] my-[20px]">
-                                <input type="email" placeholder="Your Email" required className="flex-1 py-[12px] px-[15px] border-none rounded-[4px] text-[14px]" />
-                                <button type="submit" className="py-[12px] px-[20px] bg-secondary text-white border-none rounded-[4px] cursor-pointer transition-all duration-300 hover:bg-primary">
-                                    <i className="fas fa-paper-plane"></i>
-                                </button>
+                            <h4 className="text-white text-[20px] mb-[30px] font-bold">Newsletter</h4>
+                            <p className="text-white/80 text-[15px] leading-[1.8] mb-[25px]">
+                                Subscribe to get the latest property updates and news.
+                            </p>
+                            <form className="mb-[30px]">
+                                <div className="relative">
+                                    <input
+                                        type="email"
+                                        placeholder="Email Address"
+                                        className="w-full h-[55px] pl-[20px] pr-[60px] bg-white/5 border border-white/10 rounded-[6px] text-white text-[14px] placeholder:text-white/40 focus:outline-none focus:border-secondary transition-all"
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="absolute right-[5px] top-[5px] w-[45px] h-[45px] bg-secondary text-white rounded-[4px] flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-secondary"
+                                    >
+                                        <i className="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
                             </form>
-                            <div className="payment-methods">
-                                <h5 className="text-white text-[14px] my-[20px] mb-[10px] font-semibold">We Accept</h5>
-                                <div className="flex gap-[15px] text-[28px]">
-                                    <i className="fab fa-cc-visa text-white/60"></i>
-                                    <i className="fab fa-cc-mastercard text-white/60"></i>
-                                    <i className="fab fa-cc-paypal text-white/60"></i>
-                                    <i className="fab fa-cc-amex text-white/60"></i>
+                            <div>
+                                <h5 className="text-white text-[16px] mb-[20px] font-semibold">Follow Us</h5>
+                                <div className="flex gap-[15px]">
+                                    <a href="#" className="w-[45px] h-[45px] flex items-center justify-center bg-white/5 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[5px]">
+                                        <i className="fab fa-facebook-f"></i>
+                                    </a>
+
+                                    <a href="#" className="w-[45px] h-[45px] flex items-center justify-center bg-white/5 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[5px]">
+                                        <i className="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" className="w-[45px] h-[45px] flex items-center justify-center bg-white/5 rounded-full text-white transition-all duration-300 hover:bg-secondary hover:-translate-y-[5px]">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

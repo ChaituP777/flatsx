@@ -42,7 +42,7 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
     };
 
     const title = mode === 'login' ? 'Sign In' : 'Sign Up';
-    const subTitle = type === 'buyer' ? 'to access your personalized dashboard' : 'to manage your properties';
+    const subTitle = type === 'buyer' ? 'to access your account' : 'to manage your properties';
     const typeLabel = type === 'buyer' ? 'Buyer' : type === 'owner' ? 'Property Owner' : 'Broker';
 
     // Links configuration
@@ -86,7 +86,7 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
+                                        className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
                                         placeholder="Enter your full name"
                                         required
                                     />
@@ -101,7 +101,13 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                             name="countryCode"
                                             value={formData.countryCode}
                                             onChange={handleChange}
-                                            className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary bg-white"
+                                            className="w-full p-[15px_20px] appearance-none border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary bg-white"
+                                            style={{
+                                                backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
+                                                backgroundRepeat: "no-repeat",
+                                                backgroundPosition: "right 20px center",
+                                                backgroundSize: "16px"
+                                            }}
                                         >
                                             <option value="+91">+91 (India)</option>
                                             <option value="+1">+1 (USA)</option>
@@ -117,7 +123,7 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
+                                            className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
                                             placeholder="Enter your phone number"
                                             required
                                             pattern="[0-9]{10}"
@@ -135,7 +141,7 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
+                                            className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
                                             placeholder="Enter your email"
                                             required
                                         />
@@ -147,7 +153,7 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                             name="password"
                                             value={formData.password}
                                             onChange={handleChange}
-                                            className="w-full p-[14px_16px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
+                                            className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
                                             placeholder="Enter your password"
                                             required
                                         />

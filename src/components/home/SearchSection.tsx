@@ -37,7 +37,13 @@ const SearchSection = () => {
                                     name="location"
                                     value={searchData.location}
                                     onChange={handleChange}
-                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    className="w-full p-[15px_20px] appearance-none border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    style={{
+                                        backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "right 20px center",
+                                        backgroundSize: "16px"
+                                    }}
                                 >
                                     <option value="">Choose Area</option>
                                     <option value="mumbai">Mumbai</option>
@@ -54,7 +60,13 @@ const SearchSection = () => {
                                     name="bhkType"
                                     value={searchData.bhkType}
                                     onChange={handleChange}
-                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    className="w-full p-[15px_20px] appearance-none border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    style={{
+                                        backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "right 20px center",
+                                        backgroundSize: "16px"
+                                    }}
                                 >
                                     <option value="">Select BHK</option>
                                     <option value="1bhk">1 BHK</option>
@@ -71,7 +83,13 @@ const SearchSection = () => {
                                     name="propertyType"
                                     value={searchData.propertyType}
                                     onChange={handleChange}
-                                    className="w-full p-[14px_16px] border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    className="w-full p-[15px_20px] appearance-none border-2 border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 bg-white focus:outline-none focus:border-secondary"
+                                    style={{
+                                        backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "right 20px center",
+                                        backgroundSize: "16px"
+                                    }}
                                 >
                                     <option value="">Select Status</option>
                                     <option value="rent">For Rent</option>

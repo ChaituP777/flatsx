@@ -13,7 +13,7 @@ const ServicesSection = () => {
             icon: 'fas fa-building',
             title: 'Sell a Home',
             description: 'Over 1 million+ homes for sale available on the website, we can match you with a house you will want to call home.',
-            link: '/post-property'
+            link: '/login/owner'
         }
     ];
 

@@ -10,9 +10,12 @@ interface AuthFormProps {
     mode: 'login' | 'signup';
 }
 
-const AuthForm = ({ type, mode }: AuthFormProps) => {
+const AuthForm = ({ type: initialType, mode }: AuthFormProps) => {
     const router = useRouter();
     const [authMethod, setAuthMethod] = useState<'mobile' | 'email'>('mobile');
+    const [currentType, setCurrentType] = useState(initialType);
+    const [showOtp, setShowOtp] = useState(false);
+    const [error, setError] = useState('');
     const [formData, setFormData] = useState({
         countryCode: '+91',
         phone: '',
@@ -27,28 +30,70 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
             ...formData,
             [e.target.name]: e.target.value
         });
+        if (error) setError('');
+    };
+
+    const handleGetOtp = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+        if (!formData.phone) {
+            setError('Please enter phone number');
+            return;
+        }
+        if (formData.phone.length === 10) {
+            setShowOtp(true);
+            // Simulate sending OTP
+            console.log('Sending OTP to', formData.countryCode, formData.phone);
+        } else {
+            setError('Please enter a valid 10-digit phone number');
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(`${mode} as ${type} via ${authMethod}`, formData);
+        console.log(`${mode} as ${currentType} via ${authMethod}`, formData);
 
         // Disabled navigation as per previous request
         // if (mode === 'login') {
         //     router.push('/dashboard'); 
         // } else {
-        //     router.push(`/login/${type}`);
+        //     router.push(`/login/${currentType}`);
         // }
     };
 
     const title = mode === 'login' ? 'Sign In' : 'Sign Up';
-    const subTitle = type === 'buyer' ? 'to access your account' : 'to manage your properties';
-    const typeLabel = type === 'buyer' ? 'Buyer' : type === 'owner' ? 'Property Owner' : 'Broker';
+    const subTitle = currentType === 'buyer' ? 'to access your account' : 'to manage your properties';
+    const typeLabel = currentType === 'buyer' ? 'Buyer' : currentType === 'owner' ? 'Property Owner' : 'Broker';
 
     // Links configuration
-    const switchModeLink = mode === 'login' ? `/signup/${type}` : `/login/${type}`;
+    const switchModeLink = mode === 'login' ? `/signup/${currentType}` : `/login/${currentType}`;
     const switchModeText = mode === 'login' ? "Don't have an account?" : "Already have an account?";
     const switchModeAction = mode === 'login' ? "Sign Up" : "Login";
+
+    const isSeller = currentType === 'owner' || currentType === 'broker';
+
+    const resetForm = () => {
+        setFormData(prev => ({
+            ...prev,
+            phone: '',
+            email: '',
+            password: '',
+            otp: '',
+            name: '',
+        }));
+        setShowOtp(false);
+        setError('');
+    };
+
+    const handleRoleChange = (newRole: 'owner' | 'broker') => {
+        setCurrentType(newRole);
+        resetForm();
+    };
+
+    const handleAuthMethodChange = (method: 'mobile' | 'email') => {
+        setAuthMethod(method);
+        resetForm();
+    };
 
     return (
         <div className="min-h-screen flex items-center py-[60px] bg-section-1">
@@ -61,17 +106,43 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                             <p className="text-paragraph text-[15px]">{subTitle}</p>
                         </div>
 
+                        {/* Owner/Broker Toggle */}
+                        {isSeller && (
+                            <div className="flex gap-[20px] mb-[25px]">
+                                <label className="flex items-center cursor-pointer gap-[8px]">
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        checked={currentType === 'owner'}
+                                        onChange={() => handleRoleChange('owner')}
+                                        className="w-[18px] h-[18px] accent-secondary"
+                                    />
+                                    <span className={`text-[15px] font-semibold ${currentType === 'owner' ? 'text-heading' : 'text-paragraph'}`}>Owner</span>
+                                </label>
+                                <label className="flex items-center cursor-pointer gap-[8px]">
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        checked={currentType === 'broker'}
+                                        onChange={() => handleRoleChange('broker')}
+                                        className="w-[18px] h-[18px] accent-secondary"
+                                    />
+                                    <span className={`text-[15px] font-semibold ${currentType === 'broker' ? 'text-heading' : 'text-paragraph'}`}>Broker</span>
+                                </label>
+                            </div>
+                        )}
+
                         {/* Auth Method Toggle */}
                         <div className="flex p-[4px] bg-section-1 rounded-[8px] mb-[30px] w-fit">
                             <button
                                 className={`py-[8px] px-[20px] rounded-[6px] text-[14px] font-semibold transition-all duration-300 border-none cursor-pointer ${authMethod === 'mobile' ? 'bg-white text-secondary shadow-sm' : 'bg-transparent text-paragraph hover:text-heading'}`}
-                                onClick={() => setAuthMethod('mobile')}
+                                onClick={() => handleAuthMethodChange('mobile')}
                             >
                                 Mobile Number
                             </button>
                             <button
                                 className={`py-[8px] px-[20px] rounded-[6px] text-[14px] font-semibold transition-all duration-300 border-none cursor-pointer ${authMethod === 'email' ? 'bg-white text-secondary shadow-sm' : 'bg-transparent text-paragraph hover:text-heading'}`}
-                                onClick={() => setAuthMethod('email')}
+                                onClick={() => handleAuthMethodChange('email')}
                             >
                                 Email ID
                             </button>
@@ -94,43 +165,74 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                             )}
 
                             {authMethod === 'mobile' ? (
-                                <div className="flex flex-col md:flex-row gap-[15px] mb-[20px]">
-                                    <div className="mb-[20px] w-full md:w-[30%]">
-                                        <label className="block mb-[8px] font-semibold text-heading text-[14px]">Country Code</label>
-                                        <select
-                                            name="countryCode"
-                                            value={formData.countryCode}
-                                            onChange={handleChange}
-                                            className="w-full p-[15px_20px] appearance-none border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary bg-white"
-                                            style={{
-                                                backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
-                                                backgroundRepeat: "no-repeat",
-                                                backgroundPosition: "right 20px center",
-                                                backgroundSize: "16px"
-                                            }}
+                                <div className="flex flex-col gap-[15px] mb-[20px]">
+                                    <div className="flex flex-row gap-[15px]">
+                                        <div className="w-[110px]">
+                                            <label className="block mb-[8px] font-semibold text-heading text-[14px]">Country Code</label>
+                                            <select
+                                                name="countryCode"
+                                                value={formData.countryCode}
+                                                onChange={handleChange}
+                                                className="w-full p-[15px_20px] appearance-none border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary bg-white"
+                                                style={{
+                                                    backgroundImage: "url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundPosition: "right 20px center",
+                                                    backgroundSize: "16px"
+                                                }}
+                                            >
+                                                <option value="+91">+91</option>
+                                                <option value="+1">+1</option>
+                                                <option value="+44">+44</option>
+                                                <option value="+971">+971</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="flex-1">
+                                            <label className="block mb-[8px] font-semibold text-heading text-[14px]">Phone Number *</label>
+                                            <div className="w-full">
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    className={`w-full p-[15px_20px] border-[2px] ${error ? 'border-red-500' : 'border-border-1'} rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary`}
+                                                    placeholder="Enter your phone number"
+                                                    disabled={showOtp}
+                                                />
+                                                {error && <p className="text-red-500 text-[13px] mt-[5px]">{error}</p>}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {showOtp && (
+                                        <div className="mb-[20px]">
+                                            <label className="block mb-[8px] font-semibold text-heading text-[14px]">OTP *</label>
+                                            <input
+                                                type="text"
+                                                name="otp"
+                                                value={formData.otp}
+                                                onChange={handleChange}
+                                                className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
+                                                placeholder="Enter OTP"
+                                                required
+                                            />
+                                        </div>
+                                    )}
+
+                                    {!showOtp ? (
+                                        <button
+                                            type="button"
+                                            onClick={handleGetOtp}
+                                            className="btn btn-primary w-full p-[16px] text-[16px]"
                                         >
-                                            <option value="+91">+91 (India)</option>
-                                            <option value="+1">+1 (USA)</option>
-                                            <option value="+44">+44 (UK)</option>
-                                            <option value="+971">+971 (UAE)</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="mb-[20px] w-full md:flex-1">
-                                        <label className="block mb-[8px] font-semibold text-heading text-[14px]">Phone Number *</label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            className="w-full p-[15px_20px] border-[2px] border-border-1 rounded-[6px] text-[15px] transition-colors duration-300 font-inherit focus:outline-none focus:border-secondary"
-                                            placeholder="Enter your phone number"
-                                            required
-                                            pattern="[0-9]{10}"
-                                        />
-                                    </div>
-
-                                    {/* OTP Input would ideally appear after sending OTP. For visual demo, we simulate it here or just keep login button */}
+                                            Get OTP
+                                        </button>
+                                    ) : (
+                                        <button type="submit" className="btn btn-primary w-full p-[16px] text-[16px]">
+                                            {mode === 'login' ? 'Login' : 'create account'}
+                                        </button>
+                                    )}
                                 </div>
                             ) : (
                                 <>
@@ -158,12 +260,11 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                                             required
                                         />
                                     </div>
+                                    <button type="submit" className="btn btn-primary w-full p-[16px] text-[16px]">
+                                        {mode === 'login' ? 'Login' : 'create account'}
+                                    </button>
                                 </>
                             )}
-
-                            <button type="submit" className="btn btn-primary w-full p-[16px] text-[16px]">
-                                {mode === 'login' ? 'Login' : 'create account'}
-                            </button>
                         </form>
 
                         <div className="text-center pt-[30px] border-t border-border-1">
@@ -172,14 +273,14 @@ const AuthForm = ({ type, mode }: AuthFormProps) => {
                             </p>
 
                             <div className="mt-[20px] flex gap-[15px] justify-center">
-                                {type !== 'buyer' && (
+                                {currentType !== 'buyer' && (
                                     <Link href={mode === 'login' ? '/login/buyer' : '/signup/buyer'} className="text-[13px] text-paragraph hover:text-secondary">
                                         Are you a Buyer?
                                     </Link>
                                 )}
-                                {type !== 'owner' && (
+                                {currentType === 'buyer' && (
                                     <Link href={mode === 'login' ? '/login/owner' : '/signup/owner'} className="text-[13px] text-paragraph hover:text-secondary">
-                                        Are you an Owner?
+                                        Are you an Seller?
                                     </Link>
                                 )}
                             </div>
